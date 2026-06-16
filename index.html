@@ -133,6 +133,22 @@ body{
 <body>
 
 <!-- BG -->
+<!-- KEY SCREEN -->
+<div id="keyScreen" style="display:none;position:fixed;inset:0;z-index:99999;background:#090603;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;">
+  <div style="max-width:420px;width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(200,164,74,0.3);border-radius:28px;padding:40px 32px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.8),inset 0 1px 0 rgba(255,255,255,0.15);position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to left,transparent,rgba(200,164,74,0.6),transparent);"></div>
+    <div style="font-size:2.5rem;margin-bottom:16px;color:#c8a44a;">✦</div>
+    <h2 style="font-family:'Scheherazade New',serif;font-size:1.7rem;color:#e6c870;margin-bottom:10px;">Arabic AI Assistant</h2>
+    <p style="color:#a89880;font-size:.95rem;margin-bottom:6px;font-family:'Amiri',serif;font-style:italic;">منصة الظلال في اللغة العربية</p>
+    <div style="width:120px;height:1px;background:linear-gradient(to right,transparent,rgba(200,164,74,0.5),transparent);margin:16px auto 22px;"></div>
+    <p style="color:#c8c0b0;font-size:.92rem;margin-bottom:18px;">أدخل الـ API Key للدخول للمساعد</p>
+    <input id="keyInput" type="password" placeholder="sk-or-v1-..." style="width:100%;padding:13px 18px;border-radius:50px;background:rgba(255,255,255,0.07);border:1px solid rgba(200,164,74,0.3);color:#ede3d5;font-size:.95rem;font-family:'Noto Naskh Arabic',serif;outline:none;text-align:center;direction:ltr;box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);margin-bottom:14px;" />
+    <div id="keyError" style="color:#f87171;font-size:.82rem;margin-bottom:10px;display:none;">الـ Key غلط — تأكد منه وحاول تاني</div>
+    <button onclick="submitKey()" style="width:100%;padding:13px;border-radius:50px;background:rgba(200,164,74,0.2);border:1px solid rgba(200,164,74,0.4);color:#e6c870;font-size:1rem;font-family:'Noto Naskh Arabic',serif;cursor:pointer;box-shadow:0 4px 20px rgba(200,164,74,0.15),inset 0 1px 0 rgba(255,255,255,0.2);transition:all .2s;" onmouseover="this.style.background='rgba(200,164,74,0.35)'" onmouseout="this.style.background='rgba(200,164,74,0.2)'">دخول ✦</button>
+    <p style="color:#a89880;font-size:.75rem;margin-top:16px;opacity:.6;">الـ Key بيتخزن في متصفحك بس — مش بيتبعت لحد</p>
+  </div>
+</div>
+
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
@@ -187,7 +203,7 @@ body{
 /* ══════════════════════════════════════
    ⬇️  ضع الـ API Key بتاعك هنا
    ══════════════════════════════════════ */
-const OR_API_KEY = "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";
+let OR_API_KEY = localStorage.getItem("or_api_key") || "";
 /* ══════════════════════════════════════ */
 
 const OR_URL = "https://openrouter.ai/api/v1/chat/completions";
@@ -232,6 +248,15 @@ let loading = false;
 
 // ═══ INIT ═══
 window.onload = function() {
+  // Check for saved key
+  const saved = localStorage.getItem("or_api_key");
+  if(saved && saved.startsWith("sk-or")) {
+    OR_API_KEY = saved;
+    document.getElementById("keyScreen").style.display = "none";
+  } else {
+    document.getElementById("keyScreen").style.display = "flex";
+  }
+
   // Particles
   const pw = document.getElementById('ptcls');
   for(let i=0;i<35;i++){
@@ -378,6 +403,23 @@ function appendError(msg){
   msgs.appendChild(d);
   msgs.scrollTop=msgs.scrollHeight;
 }
+
+function submitKey(){
+  const val = document.getElementById('keyInput').value.trim();
+  if(!val.startsWith('sk-or')){
+    document.getElementById('keyError').style.display='block';
+    return;
+  }
+  OR_API_KEY = val;
+  localStorage.setItem('or_api_key', val);
+  document.getElementById('keyScreen').style.display='none';
+  document.getElementById('keyError').style.display='none';
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  const ki = document.getElementById('keyInput');
+  if(ki) ki.addEventListener('keydown',function(e){if(e.key==='Enter') submitKey();});
+});
 
 function escHtml(t){
   return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
