@@ -184,13 +184,11 @@ body{
 </div>
 
 <script>
-/* ══════════════════════════════════════
-   ⬇️  ضع الـ API Key بتاعك هنا
    ══════════════════════════════════════ */
 const GEMINI_API_KEY = "AQ.Ab8RN6LyYFYKjPW2K6LkB4Wrt2P-hV1asQXfJ4lMYPSNhk2PrQ";
 /* ══════════════════════════════════════ */
 
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
 
 const SYSTEM_PROMPT = `أنت مساعد ذكاء اصطناعي متخصص في تدريس اللغة العربية — النحو والصرف والبلاغة — لطلاب الصف الثالث الثانوي في مصر.
 أنت تعمل على منصة "الظلال في اللغة العربية" بإشراف مستر محمد عبد المنعم.
