@@ -192,8 +192,6 @@ let currentModelIndex = 0;
 let GEMINI_API_KEY = localStorage.getItem("gemini_api_key") || "";
 let history = [];
 let loading = false;
-
-// ✅ الحل: تتبع إذا المستخدم رفع بإيده
 let userScrolledUp = false;
 
 const SYSTEM_PROMPT = `أنت مساعد ذكاء اصطناعي متخصص في تدريس اللغة العربية — النحو والصرف والبلاغة — لطلاب الصف الثالث الثانوي في مصر.
@@ -231,11 +229,20 @@ const SUGGESTIONS = [
 ];
 
 // ══════════════════════════════════════
-// SCROLL HELPER
+// SCROLL — الحل الصح
 // ══════════════════════════════════════
-function smartScroll(el) {
+function forceScrollBottom() {
+  const msgs = document.getElementById('messages');
+  if (!msgs) return;
+  // requestAnimationFrame بتضمن إن الـ DOM اترسم الأول
+  requestAnimationFrame(() => {
+    msgs.scrollTop = msgs.scrollHeight;
+  });
+}
+
+function smartScroll() {
   if (!userScrolledUp) {
-    el.scrollTop = el.scrollHeight;
+    forceScrollBottom();
   }
 }
 
@@ -313,7 +320,7 @@ function showRetryStatus(msg) {
   retryEl.textContent = msg;
   const msgs = document.getElementById('messages');
   msgs.appendChild(retryEl);
-  smartScroll(msgs);
+  smartScroll();
 }
 function hideRetryStatus() {
   if (retryEl) { retryEl.remove(); retryEl = null; }
@@ -330,7 +337,7 @@ async function sendMessage(text) {
   document.getElementById('sendBtn').disabled = true;
   loading = true;
 
-  // لما المستخدم يبعت رسالة، نرجع للأسفل تلقائي
+  // لما المستخدم يبعت، نرجع للأسفل دايماً
   userScrolledUp = false;
 
   showMessages();
@@ -405,7 +412,7 @@ window.onload = function () {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
   });
 
-  // ✅ الحل: تتبع scroll المستخدم
+  // تتبع scroll المستخدم — لو رفع بيده نوقف auto-scroll
   const msgsDiv = document.getElementById('messages');
   msgsDiv.addEventListener('scroll', () => {
     const atBottom = msgsDiv.scrollHeight - msgsDiv.scrollTop - msgsDiv.clientHeight < 60;
@@ -420,9 +427,8 @@ function showMessages() {
   const msgs = document.getElementById('messages');
   msgs.style.display = 'block';
   document.getElementById('clearBtn').classList.add('show');
-  // رجوع للأسفل لما تبدأ محادثة جديدة
   userScrolledUp = false;
-  smartScroll(msgs);
+  forceScrollBottom();
 }
 
 function clearChat() {
@@ -447,7 +453,8 @@ function appendMessage(role, text) {
     ${!isUser ? `<div class="msg-avatar ai-av">✦</div>` : ''}
   `;
   msgs.appendChild(row);
-  smartScroll(msgs);
+  // setTimeout(0) + requestAnimationFrame يضمن الـ DOM اترسم قبل الـ scroll
+  setTimeout(() => smartScroll(), 0);
 }
 
 function appendTyping(id) {
@@ -461,7 +468,7 @@ function appendTyping(id) {
     <div class="msg-avatar ai-av">✦</div>
   `;
   msgs.appendChild(row);
-  smartScroll(msgs);
+  setTimeout(() => smartScroll(), 0);
 }
 
 function removeTyping(id) {
@@ -474,7 +481,7 @@ function appendError(msg) {
   const d = document.createElement('div');
   d.className = 'error-msg'; d.textContent = msg;
   msgs.appendChild(d);
-  smartScroll(msgs);
+  setTimeout(() => smartScroll(), 0);
 }
 
 function resetKey() {
@@ -508,4 +515,3 @@ function escHtml(t) {
 </script>
 </body>
 </html>
-
