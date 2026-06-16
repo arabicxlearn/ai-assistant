@@ -188,11 +188,15 @@ body{font-family:'Noto Naskh Arabic',serif;background:var(--bg);color:var(--crea
 // لو واحد بيجي 429، بيروح للتاني تلقائياً
 // ══════════════════════════════════════
 const MODELS = [
-  { id: 'google/gemma-3-27b-it:free',      name: 'Gemma 3 27B' },
+  // OpenRouter automatic free router — بيختار الأفضل تلقائياً
+  { id: 'openrouter/auto',                        name: 'Auto (أفضل متاح)' },
+  // موديلات مؤكدة يونيو 2026
   { id: 'meta-llama/llama-3.3-70b-instruct:free', name: 'Llama 3.3 70B' },
-  { id: 'mistralai/mistral-7b-instruct:free',     name: 'Mistral 7B' },
-  { id: 'deepseek/deepseek-r1-0528:free',         name: 'DeepSeek R1' },
-  { id: 'qwen/qwen3-8b:free',                     name: 'Qwen3 8B' },
+  { id: 'deepseek/deepseek-r1:free',              name: 'DeepSeek R1' },
+  { id: 'qwen/qwen3-14b:free',                    name: 'Qwen3 14B' },
+  { id: 'google/gemma-3-27b-it:free',             name: 'Gemma 3 27B' },
+  { id: 'openai/gpt-oss-20b:free',                name: 'GPT-OSS 20B' },
+  { id: 'nvidia/llama-3.1-nemotron-nano-8b-v1:free', name: 'Nemotron 8B' },
 ];
 
 let currentModelIndex = 0;
