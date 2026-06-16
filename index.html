@@ -30,7 +30,6 @@ body{font-family:'Noto Naskh Arabic',serif;background:var(--bg);color:var(--crea
 @keyframes rise{0%{opacity:0;transform:translateY(0) scale(1);}8%{opacity:var(--op,.2);}92%{opacity:var(--op,.2);}100%{opacity:0;transform:translateY(-110vh) scale(0.4);}}
 .cline{position:fixed;top:0;left:50%;width:1px;height:100%;z-index:0;pointer-events:none;background:linear-gradient(to bottom,transparent 0%,rgba(200,164,74,0.05) 25%,rgba(200,164,74,0.05) 75%,transparent 100%);}
 
-/* NAVBAR */
 .navbar{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:8000;height:62px;width:calc(100% - 40px);max-width:900px;display:flex;align-items:center;padding:0 24px;gap:12px;background:rgba(12,8,4,0.65);backdrop-filter:var(--lg-blur-ultra);-webkit-backdrop-filter:var(--lg-blur-ultra);border:1px solid rgba(255,255,255,0.16);border-radius:999px;box-shadow:0 8px 40px rgba(0,0,0,0.7),inset 0 1px 0 rgba(255,255,255,0.2);}
 .navbar::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.12) 0%,transparent 100%);border-radius:999px;pointer-events:none;}
 .nav-title{font-family:'Scheherazade New',serif;font-size:clamp(.95rem,2vw,1.25rem);color:var(--cream);flex:1;display:flex;align-items:center;gap:8px;}
@@ -40,12 +39,10 @@ body{font-family:'Noto Naskh Arabic',serif;background:var(--bg);color:var(--crea
 @keyframes statusBlink{0%,100%{opacity:1;}50%{opacity:0.4;}}
 .model-badge{padding:4px 12px;border-radius:50px;background:rgba(200,164,74,0.08);border:1px solid rgba(200,164,74,0.2);color:var(--gold);font-size:.7rem;font-family:monospace;white-space:nowrap;overflow:hidden;max-width:150px;text-overflow:ellipsis;}
 
-/* KEY BUTTON — احترافي */
 .key-btn{display:flex;align-items:center;gap:7px;padding:7px 16px;border-radius:50px;background:rgba(200,164,74,0.1);border:1px solid rgba(200,164,74,0.3);color:var(--gold-lt);font-size:.8rem;font-family:'Noto Naskh Arabic',serif;cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0;}
 .key-btn:hover{background:rgba(200,164,74,0.22);border-color:rgba(200,164,74,0.55);box-shadow:0 0 12px rgba(200,164,74,0.2);}
 .key-btn svg{width:15px;height:15px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
 
-/* MAIN LAYOUT */
 .app{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;max-width:820px;width:100%;margin:0 auto;padding:88px 16px 0;min-height:0;}
 .messages{flex:1;min-height:0;overflow-y:auto;padding-bottom:160px;padding-top:10px;overscroll-behavior:contain;}
 .messages::-webkit-scrollbar{width:4px;}
@@ -73,37 +70,32 @@ body{font-family:'Noto Naskh Arabic',serif;background:var(--bg);color:var(--crea
 .retry-status{text-align:center;color:var(--gold);font-size:.82rem;padding:8px 16px;border-radius:12px;background:rgba(200,164,74,0.08);border:1px solid rgba(200,164,74,0.2);margin-bottom:8px;}
 .error-msg{text-align:center;color:#f87171;font-size:.88rem;padding:10px 16px;border-radius:12px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);margin-bottom:12px;}
 
-/* EMPTY STATE */
 .empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:160px;animation:fadeIn .7s both;}
 .empty-icon{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,rgba(200,164,74,0.18),rgba(200,164,74,0.06));border:1px solid rgba(200,164,74,0.3);display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:var(--gold);margin-bottom:22px;box-shadow:0 0 40px rgba(200,164,74,0.2);animation:glowPulse 3s ease-in-out infinite;}
 .empty-title{font-family:'Scheherazade New',serif;font-size:clamp(1.7rem,4vw,2.4rem);color:var(--gold-lt);margin-bottom:10px;text-align:center;animation:glowPulse 4s ease-in-out infinite;}
 .empty-sub{font-family:'Amiri',serif;color:var(--cream-dim);font-size:1.05rem;text-align:center;max-width:380px;line-height:2;margin-bottom:10px;font-style:italic;}
 .empty-stats{display:flex;align-items:center;gap:8px;margin-bottom:32px;padding:5px 18px;border-radius:50px;background:rgba(200,164,74,0.07);border:1px solid rgba(200,164,74,0.18);color:var(--gold);font-size:.82rem;}
 .empty-stats span.sep{opacity:.35;}
-.suggestions{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;max-width:600px;}
+.suggestions{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;max-width:660px;}
 .chip{padding:8px 16px;border-radius:50px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);color:#c8c0b0;font-size:.85rem;cursor:pointer;font-family:'Noto Naskh Arabic',serif;transition:all .2s;}
 .chip:hover{background:rgba(200,164,74,0.15);border-color:rgba(200,164,74,0.4);transform:translateY(-2px);}
 
-/* INPUT BAR */
 .input-bar{position:fixed;bottom:0;left:0;right:0;z-index:7000;padding:12px 16px 18px;background:linear-gradient(to top,rgba(9,6,3,0.98) 70%,transparent);}
 .input-inner{max-width:820px;margin:0 auto;display:flex;gap:10px;align-items:flex-end;background:rgba(18,12,6,0.75);backdrop-filter:var(--lg-blur);-webkit-backdrop-filter:var(--lg-blur);border:1px solid rgba(200,164,74,0.22);border-radius:28px;padding:10px 10px 10px 14px;box-shadow:0 8px 40px rgba(0,0,0,0.7);position:relative;overflow:hidden;}
 .input-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to left,transparent,rgba(200,164,74,0.4),transparent);}
 #chatInput{flex:1;background:transparent;border:none;outline:none;color:var(--cream);font-size:.97rem;font-family:'Noto Naskh Arabic',serif;line-height:1.75;direction:rtl;text-align:right;resize:none;max-height:140px;overflow-y:auto;padding-top:4px;}
 #chatInput::placeholder{color:rgba(168,152,128,0.6);}
 
-/* SEND BUTTON */
 .send-btn{width:44px;height:44px;border-radius:50%;flex-shrink:0;background:rgba(200,164,74,0.18);border:1px solid rgba(200,164,74,0.35);color:var(--gold-lt);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(200,164,74,0.15);}
 .send-btn:hover:not(:disabled){background:rgba(200,164,74,0.3);transform:scale(1.08);}
 .send-btn:disabled{opacity:.35;cursor:not-allowed;}
 
-/* TRASH BUTTON — على اليمين */
 .trash-btn{width:44px;height:44px;border-radius:50%;flex-shrink:0;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.35);color:#ef4444;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(239,68,68,0.1);}
 .trash-btn:hover{background:rgba(239,68,68,0.28);border-color:rgba(239,68,68,0.6);transform:scale(1.08);box-shadow:0 4px 20px rgba(239,68,68,0.3);}
 .trash-btn svg{width:18px;height:18px;fill:none;stroke:#ef4444;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 
 .input-hint{text-align:center;color:var(--cream-dim);font-size:.72rem;margin-top:7px;opacity:.5;}
 
-/* CONFIRM MODAL */
 .modal-overlay{position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;}
 .modal-overlay.show{display:flex;}
 .modal-box{background:rgba(18,12,6,0.95);border:1px solid rgba(239,68,68,0.4);border-radius:24px;padding:32px 28px;max-width:340px;width:90%;text-align:center;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.8);}
@@ -118,7 +110,6 @@ body{font-family:'Noto Naskh Arabic',serif;background:var(--bg);color:var(--crea
 .modal-btn.confirm{background:rgba(239,68,68,0.2);border-color:rgba(239,68,68,0.5);color:#f87171;}
 .modal-btn.confirm:hover{background:rgba(239,68,68,0.35);}
 
-/* KEY SCREEN */
 #keyScreen{display:none;position:fixed;inset:0;z-index:99999;background:#090603;flex-direction:column;align-items:center;justify-content:center;padding:24px;}
 
 @keyframes glowPulse{0%,100%{text-shadow:0 0 20px rgba(200,164,74,0.3);}50%{text-shadow:0 0 50px rgba(200,164,74,0.8),0 0 80px rgba(200,164,74,0.3);}}
@@ -175,7 +166,6 @@ body{font-family:'Noto Naskh Arabic',serif;background:var(--bg);color:var(--crea
   <div class="nav-title"><span class="orn">✦</span>مساعدك الشخصي في اللغة العربية<span class="orn">✦</span></div>
   <div class="model-badge" id="modelBadge">gemini-2.5-flash</div>
   <div class="nav-status"><div class="status-dot"></div>متصل</div>
-  <!-- زر API Key احترافي -->
   <button class="key-btn" onclick="resetKey()" title="تغيير الـ API Key">
     <svg viewBox="0 0 24 24">
       <circle cx="7.5" cy="15.5" r="5.5"></circle>
@@ -194,19 +184,18 @@ body{font-family:'Noto Naskh Arabic',serif;background:var(--bg);color:var(--crea
     <h1 class="empty-title">أهلاً وسهلاً! 👋</h1>
     <p class="empty-sub">أنا محمد، مساعدك الشخصي في اللغة العربية<br>اسألني عن أي حاجة في النحو والصرف والبلاغة</p>
     <div class="empty-stats">
-      <span>٤٩ محاضرة</span><span class="sep">|</span>
-      <span>٣ مجموعات</span><span class="sep">|</span>
-      <span>الثالث الثانوي</span>
+      <span>نحو شامل</span><span class="sep">|</span>
+      <span>صرف وبلاغة</span><span class="sep">|</span>
+      <span>ثانوية عامة</span>
     </div>
     <div class="suggestions" id="suggestions"></div>
   </div>
   <div class="messages" id="messages" style="display:none;"></div>
 </div>
 
-<!-- INPUT BAR — السلة على اليمين، الإرسال على اليسار -->
+<!-- INPUT BAR -->
 <div class="input-bar">
   <div class="input-inner">
-    <!-- السلة أقصى اليمين -->
     <button class="trash-btn" onclick="askClear()" title="مسح المحادثة">
       <svg viewBox="0 0 24 24">
         <polyline points="3 6 5 6 21 6"></polyline>
@@ -217,7 +206,6 @@ body{font-family:'Noto Naskh Arabic',serif;background:var(--bg);color:var(--crea
       </svg>
     </button>
     <textarea id="chatInput" rows="1" placeholder="اسأل عن أي درس في النحو أو الصرف أو البلاغة..."></textarea>
-    <!-- زر الإرسال أقصى اليسار -->
     <button class="send-btn" id="sendBtn" onclick="sendMessage()" disabled>
       <i class="fas fa-paper-plane" style="transform:scaleX(-1);"></i>
     </button>
@@ -232,167 +220,559 @@ let GEMINI_API_KEY = localStorage.getItem('gemini_api_key') || '';
 let chatHistory = [];
 let isLoading = false;
 
-const STORAGE_KEY_HISTORY   = 'chat_history_v1';
-const STORAGE_KEY_MESSAGES  = 'chat_messages_v1';
+const STORAGE_KEY_HISTORY  = 'chat_history_v1';
+const STORAGE_KEY_MESSAGES = 'chat_messages_v1';
 
-const SYSTEM_PROMPT = `انت اسمك "محمد" وانت مساعد شخصي في اللغة العربية بتساعد الطلاب على المنصة.
+// =====================================================================
+//  SYSTEM PROMPT — نحو ثانوية عامة شامل كامل
+// =====================================================================
+const SYSTEM_PROMPT = `أنت اسمك "محمد" وأنت مساعد شخصي متخصص في اللغة العربية للثانوية العامة.
 
 🗣️ أسلوب كلامك:
 - اتكلم بالعامية المصرية دايماً — زي ما صاحبك بيكلمك
 - متكلمش فصحى خالص إلا لو كنت بتشرح مصطلح نحوي أو بتكتب مثال
 - استخدم كلام زي: "يعني"، "بص يا صديقي"، "تعالى نشوف"، "ببساطة"، "سهلة جداً"، "اوعى تنسى"
 - كن ودي وحماسي زي صاحب بيذاكر مع صاحبه
-- لو حد غلط في حاجة، صحّحه بلطف ومتعصبش عليه
-- لو الكلام طويل، قسّمه وابسّطه ومتحشرش معلومات كتير في مرة
-- لو حد سألك مين انت، قول "أنا محمد، مساعدك الشخصي في اللغة العربية — هنا أساعدك تتعلم وتذاكر مع بعض"
-- متناديش المستخدم باسم معين إلا لو هو قالك اسمه
+- لو حد غلط في حاجة، صحّحه بلطف
+- لو حد سألك مين انت، قول "أنا محمد، مساعدك الشخصي في اللغة العربية"
+- لما تشرح درس: ابدأ بتعريف بسيط بالعامية، وبعدين هات أمثلة واضحة، واشرح الإعراب خطوة بخطوة
 
-📚 المنهج اللي بتشرحه:
+📚 المنهج الكامل اللي بتعرفه وبتشرحه:
 
-【 المجموعة الأولى — 14 محاضرة 】
-١- المبتدأ والخبر | ٢- أنواع الخبر | ٣- أنواع الفعل | ٤- الفاعل والضمائر | ٥- المفعول به والضمائر | ٦- تاء الفاعل وتاء التأنيث | ٧- النكرة والمعرفة والمضاف إليه | ٨- بناء الأفعال | ٩- المثنى | ١٠- جمع المذكر السالم | ١١- جمع المؤنث السالم | ١٢- النعت | ١٣- الحال | ١٤- كان وأخواتها
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 أولاً: أبواب الإعراب الأساسية 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-【 المجموعة الثانية — 19 محاضرة 】
-١- الأفعال الخمسة | ٢- الأسماء الخمسة | ٣- نصب المضارع | ٤- جزم المضارع | ٥- المبني للمجهول ونائب الفاعل | ٦- المنادي | ٧- فاء السببية | ٨- لا النافية للجنس | ٩- أسلوب الشرط | ١٠- جزم المضارع في جواب الطلب | ١١- العطف | ١٢- التوكيد المعنوي | ١٣- التوكيد اللفظي | ١٤- التمييز الملفوظ والملحوظ | ١٥- تمييز العدد | ١٦- كلا وكلتا | ١٧- الإغراء | ١٨- التحذير | ١٩- الاختصاص
+▌ المبتدأ والخبر
+- المبتدأ: اسم مرفوع في أول الجملة، وعلامة رفعه الضمة أو الواو أو الألف
+- الخبر: ما يكمل الجملة ويفيدنا عن المبتدأ
+- أنواع الخبر: مفرد / جملة فعلية / جملة اسمية / شبه جملة (ظرف أو جار ومجرور)
+- مثال: "محمدٌ مجتهدٌ" — محمد: مبتدأ مرفوع، مجتهد: خبر مرفوع
+- تنبيه: لو الخبر جملة، لازم فيها رابط يربطها بالمبتدأ (ضمير غالباً)
 
-【 المجموعة الثالثة — 16 محاضرة 】
-١- أسلوب المدح والذم | ٢- الاستثناء بـ إلا | ٣- الاستثناء بـ غير وسوى | ٤- الاستثناء بـ خلا وعدا وحاشا | ٥- اسم الفعل | ٦- اسم الفاعل | ٧- أعمال اسم الفاعل | ٨- اسم المفعول | ٩- أعمال اسم المفعول | ١٠- صيغة المبالغة | ١١- أعمال صيغ المبالغة | ١٢- الأفعال المتعدية لمفعولين | ١٣- البدل | ١٤- الظروف | ١٥- اقتران جواب الشرط بالفاء | ١٦- حروف الجر
+▌ أنواع الفعل
+- الفعل الماضي: يدل على حدث انتهى — مبني دايماً
+- الفعل المضارع: يدل على حدث الآن أو في المستقبل — معرب أصلاً
+- فعل الأمر: للطلب — مبني دايماً
+- الفعل الصحيح: حروفه كلها صحيحة (كتب، ذهب)
+- الفعل المعتل: فيه حرف علة (واو أو ألف أو ياء) مثل: قال، رمى، دعا
 
-📌 قواعد مهمة:
-- لما تشرح درس، ابدأ بتعريف بسيط بالعامية، وبعدين هات مثال واضح
-- لو في إعراب، اشرحه خطوة بخطوة بأسلوب سهل
-- نبّه على الأخطاء الشائعة بطريقة خفيفة ومضحكة لو عرفت
+▌ الفاعل
+- اسم مرفوع يأتي بعد الفعل ويدل على من فعل الفعل
+- علامات الرفع: الضمة / الواو (في جمع المذكر والأسماء الخمسة) / الألف (في المثنى)
+- الفاعل لازم يكون مرفوع — مش ممكن ينصب أو يجر
+- مثال: "كتبَ الطالبُ الدرسَ" — الطالبُ: فاعل مرفوع بالضمة
+
+▌ المفعول به
+- اسم منصوب يقع عليه فعل الفاعل
+- علامات النصب: الفتحة / الياء (مثنى وجمع مذكر) / الكسرة (جمع مؤنث سالم) / الألف (أسماء خمسة)
+- مثال: "كتبَ الطالبُ الدرسَ" — الدرسَ: مفعول به منصوب بالفتحة
+- الفرق بين الفاعل والمفعول: الفاعل بيعمل، المفعول بيتأثر
+
+▌ تاء الفاعل وتاء التأنيث
+- تاء الفاعل: ضمير متحرك يلحق بالفعل الماضي (كتبتُ / كتبتَ / كتبتِ) — محلها رفع
+- تاء التأنيث: حرف ساكن يلحق بالفعل للدلالة على أن الفاعل مؤنث (كتبَتْ هندٌ) — لا محل لها من الإعراب
+
+▌ النكرة والمعرفة
+- النكرة: اسم يدل على شيء غير محدد (كتابٌ، رجلٌ)
+- المعرفة وأنواعها: الضمير / العلم / اسم الإشارة / الاسم الموصول / المحلى بأل / المضاف إلى معرفة
+- المضاف إليه: اسم مجرور يأتي بعد المضاف (كتابُ الطالبِ — الطالب: مضاف إليه مجرور)
+
+▌ بناء الأفعال
+- الفعل الماضي: مبني على الفتح أصلاً، على السكون مع تاء الفاعل ونا، على الضم مع واو الجماعة
+- فعل الأمر: مبني على السكون أصلاً، على حذف النون مع الأفعال الخمسة، على حذف حرف العلة مع المعتل الآخر
+- الفعل المضارع: معرب إلا إذا اتصلت به نون النسوة (مبني على السكون) أو نون التوكيد (مبني على الفتح)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 ثانياً: المثنى وجموع التصحيح 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ المثنى
+- تعريفه: اسم يدل على اثنين بزيادة ألف ونون أو ياء ونون
+- علامات إعرابه: الألف رفعاً (الطالبان)، الياء نصباً وجراً (الطالبَين)
+- النون تُحذف عند الإضافة (طالبا الفصل)
+- ملاحظة: المثنى الملحق بالمثنى (كلا، كلتا) — يعرب إعراب المثنى فقط لو أضيف لضمير
+
+▌ جمع المذكر السالم
+- يدل على أكثر من اثنين من الذكور بزيادة واو ونون أو ياء ونون
+- يرفع بالواو: المعلمون نجحوا
+- ينصب ويُجر بالياء: رأيتُ المعلمِين / سلّمتُ على المعلمِين
+- النون تُحذف عند الإضافة: معلمو المدرسة
+
+▌ جمع المؤنث السالم
+- يدل على جمع المؤنث بزيادة ألف وتاء
+- يرفع بالضمة: الطالباتُ نجحن
+- يُنصب ويُجر بالكسرة (وهذا استثناء!): رأيتُ الطالباتِ / مررتُ بالطالباتِ
+
+▌ جموع التكسير
+- جموع تتغير فيها أحرف المفرد
+- تعرب إعراب الاسم المفرد (ضمة رفع / فتحة نصب / كسرة جر)
+- إلا الممنوع من الصرف منها: فينصب ويُجر بالفتحة
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 ثالثاً: الأسماء الخمسة 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+الأسماء الخمسة هي: أبو / أخو / حمو / فو / ذو
+شرط إعرابها بالحروف: أن تكون مضافة لغير ياء المتكلم، ومفردة، وغير مصغّرة
+
+- تُرفع بالواو: جاء أبوكَ
+- تُنصب بالألف: رأيتُ أباكَ
+- تُجر بالياء: مررتُ بأبيكَ
+
+لو أُضيفت لياء المتكلم: أبي / أخي — تُعرب بحركات مقدرة
+"ذو" تأتي بمعنى صاحب وتُضاف دايماً لاسم جنس: رجلٌ ذو علمٍ
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 رابعاً: الأفعال الخمسة 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+الأفعال الخمسة هي كل فعل مضارع اتصل به:
+ألف الاثنين / واو الجماعة / ياء المخاطبة
+
+أمثلة: يكتبان / يكتبون / تكتبين / تكتبان / تكتبون
+
+إعرابها:
+- تُرفع بثبوت النون: الطلابُ يكتبونَ
+- تُنصب بحذف النون: لن يكتبوا
+- تُجزم بحذف النون: لم يكتبوا
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 خامساً: نصب المضارع وجزمه 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ نواصب المضارع (بتنصبه):
+أن / لن / كي / لام التعليل / لام الجحود / حتى / فاء السببية / واو المعية
+
+أمثلة:
+- أريدُ أنْ أنجحَ (أن: حرف نصب، أنجح: منصوب بالفتحة)
+- لن أقصّرَ (لن: حرف نصب ونفي واستقبال)
+- جئتُ كي أتعلّمَ (كي: حرف نصب)
+- لم أكن لأكذبَ (لام الجحود بعد كان المنفية)
+
+▌ فاء السببية
+- تنصب المضارع بعدها بـ أن مضمرة وجوباً
+- شرطها: أن يسبقها نفي أو طلب (أمر / نهي / استفهام / تمنٍّ / ترجٍّ / عرض)
+- مثال: "اجتهدْ فتنجحَ" — فتنجح: الفاء سببية، تنجح: منصوب بأن مضمرة
+
+▌ جوازم المضارع (بتجزمه):
+- تجزم فعلاً واحداً: لم / لمّا / لام الأمر / لا الناهية
+- تجزم فعلين (أدوات الشرط): إن / من / ما / مهما / أين / أينما / متى / أيّان / كيفما / إذما / أيّ / حيثما / أنّى
+
+أمثلة:
+- لم يذهبْ (لم: حرف جزم، يذهب: مجزوم بالسكون)
+- لا تكذبْ (لا الناهية: حرف جزم)
+- إن تجتهدْ تنجحْ (إن: حرف شرط جازم، تجتهد: فعل الشرط مجزوم، تنجح: جواب الشرط مجزوم)
+
+▌ جزم المضارع في جواب الطلب
+- لو جاء المضارع جواباً لأمر أو نهي أو استفهام أو تمنٍّ أو ترجٍّ، يُجزم بشرط حذف الفاء
+- مثال: "اجتهدْ تنجحْ" — تنجح مجزوم في جواب الطلب
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 سادساً: المبني للمجهول ونائب الفاعل 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- المبني للمجهول: فعل حُذف فاعله وأُقيم المفعول به مقامه
+- تحويل الماضي للمجهول: ضمّ أوله وكسر ما قبل آخره (كَتَبَ ← كُتِبَ)
+- تحويل المضارع للمجهول: ضمّ أوله وفتح ما قبل آخره (يَكتُبُ ← يُكتَبُ)
+
+نائب الفاعل:
+- يحل محل الفاعل المحذوف ويأخذ حكمه في الرفع
+- يمكن أن يكون: المفعول به الأول / المصدر / الظرف / الجار والمجرور (بشروط)
+- مثال: "كُتِبَ الدرسُ" — الدرسُ: نائب فاعل مرفوع بالضمة
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 سابعاً: كان وأخواتها وإن وأخواتها 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ كان وأخواتها (الأفعال الناقصة)
+كان / أصبح / أمسى / أضحى / ظلّ / بات / صار / ليس / مازال / مادام / مافتئ / ماانفك / مابرح
+
+- ترفع المبتدأ ويُسمّى اسمها، وتنصب الخبر ويُسمّى خبرها
+- مثال: "كان الطالبُ مجتهداً" — الطالبُ: اسم كان مرفوع، مجتهداً: خبر كان منصوب
+
+ملاحظات:
+- ليس: لنفي الحال (ليس محمدٌ كسولاً)
+- مادام: ظرفية (أكرمه ما دام صادقاً)
+- أفعال الاستمرار (مازال وأخواتها): لازم تُسبق بنفي أو نهي
+
+▌ إن وأخواتها (الحروف الناسخة)
+إنّ / أنّ / كأنّ / لكنّ / ليت / لعلّ
+
+- تنصب المبتدأ ويُسمّى اسمها، وترفع الخبر ويُسمّى خبرها (عكس كان!)
+- مثال: "إنّ الطالبَ مجتهدٌ" — الطالبَ: اسم إن منصوب، مجتهدٌ: خبر إن مرفوع
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 ثامناً: الممنوع من الصرف 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+الممنوع من الصرف: اسم لا يقبل التنوين ويُجر بالفتحة بدلاً من الكسرة
+
+▌ الممنوع من الصرف لعلة واحدة (وهي ألف التأنيث):
+- ألف التأنيث المقصورة: حُبلى / ليلى / كُبرى / سَكرى
+- ألف التأنيث الممدودة: حمراء / صحراء / أصدقاء / علماء
+
+▌ الممنوع من الصرف لعلتين:
+١) العلمية + التأنيث اللفظي أو المعنوي: فاطمة / زينب / مريم / سعاد / هند
+٢) العلمية + العجمة: إبراهيم / إسماعيل / يوسف / جورج / باريس (ثلاثة أحرف فأكثر وليس عربياً)
+٣) العلمية + وزن الفعل: أحمد / يزيد / يشكر / تغلب
+٤) العلمية + التركيب المزجي: بعلبك / حضرموت / معديكرب
+٥) العلمية + زيادة الألف والنون: عثمان / رمضان / سلمان / مروان
+٦) الوصفية + وزن أفعل: أحمر / أكبر / أصغر / أجمل / أفضل
+٧) الوصفية + زيادة الألف والنون: غضبان / عطشان / سكران / جوعان
+٨) الوصفية + وزن فُعَل (العدل): أُخَر (جمع أخرى) / مَثنى / ثُلاث / رُباع
+٩) صيغة منتهى الجموع: مساجد / قناصل / أساتذة / مصابيح / تلاميذ
+   (كل جمع بعد ألف جمعه حرفان أو ثلاثة أوسطها ساكن)
+
+إعراب الممنوع من الصرف:
+- يُرفع بالضمة: جاء أحمدُ
+- يُنصب بالفتحة: رأيتُ أحمدَ
+- يُجر بالفتحة (وهنا الاستثناء!): مررتُ بأحمدَ
+- يصرف (يقبل التنوين والكسر) لو: دخلت عليه أل / أضيف
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 تاسعاً: المنادى 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+حروف النداء: يا / أيا / هيا / أي / الهمزة (للقريب)
+
+أنواع المنادى وإعرابه:
+١) العلم المفرد: يُبنى على الضم: يا محمدُ
+٢) النكرة المقصودة: يُبنى على الضم: يا رجلُ
+٣) النكرة غير المقصودة: تُنصب: يا رجلاً أكرمني
+٤) المضاف: يُنصب: يا طالبَ العلمِ
+٥) الشبيه بالمضاف: يُنصب: يا طالعاً جبلاً
+
+"أيها" و"أيتها":
+- تُبنى على الضم وتُعرب منادى
+- الاسم بعدها: نعت مرفوع: يا أيها الطلابُ
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 عاشراً: لا النافية للجنس 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- تعمل عمل إن: تنصب الاسم وترفع الخبر
+- شرط عملها: أن يكون اسمها وخبرها نكرتين وألا يُفصل بينها وبين اسمها
+
+أنواع اسمها:
+١) مفرد: يُبنى على ما يُنصب به ولا يُنوَّن: لا طالبَ مقصّرٌ
+٢) مضاف: يُنصب بالفتحة: لا طالبَ علمٍ خاسرٌ
+٣) شبيه بالمضاف: يُنصب بالفتحة: لا طالعاً جبلاً حاضرٌ
+
+لو تكررت لا: لا حولَ ولا قوةَ إلا بالله
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 الحادي عشر: أسلوب الشرط 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ أدوات الشرط الجازمة:
+إن / من / ما / مهما / أين / أينما / متى / أيّان / كيفما / إذما / حيثما / أنّى / أيّ
+
+▌ أدوات الشرط غير الجازمة:
+لو / لولا / لمّا / كلّما / أمّا
+
+▌ اقتران جواب الشرط بالفاء:
+جواب الشرط يقترن بالفاء لو كان:
+١) جملة اسمية: إن تجتهدْ فالنجاحُ حليفُك
+٢) جملة فعلية فعلها جامد (ليس / عسى / نعم / بئس): إن تكسلْ فعسى أن تندمَ
+٣) فعل مضارع مقرون بـ "لن" أو "ما" أو "قد" أو "سوف / السين": إن تجتهدْ فسوف تنجحُ
+٤) فعل طلبي (أمر أو نهي): إن حضرتَ فاجلسْ
+٥) شبه جملة: إن تنجحْ فبسببِ اجتهادك
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 الثاني عشر: النعت والتوكيد والعطف والبدل 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ النعت (الصفة)
+- يتبع المنعوت في: الإعراب / التعريف والتنكير / التذكير والتأنيث / الإفراد والتثنية والجمع
+- النعت الحقيقي: يصف المنعوت نفسه (جاء طالبٌ مجتهدٌ)
+- النعت السببي: يصف ما له صلة بالمنعوت (جاء طالبٌ مجتهدٌ أبوه) — يوافق منعوته في الإعراب والتعريف فقط
+
+▌ التوكيد
+- التوكيد اللفظي: تكرار اللفظ نفسه (جاء محمدٌ محمدٌ)
+- التوكيد المعنوي بألفاظ: نفس / عين / كل / جميع / كلا / كلتا
+  - مثال: جاء الطلابُ كلُّهم (كلُّهم: توكيد مرفوع وهو مضاف، والهاء ضمير في محل جر)
+
+▌ العطف
+حروف العطف: الواو / الفاء / ثمّ / أو / أم / لا / بل / لكن / حتى
+- المعطوف يتبع المعطوف عليه في إعرابه
+- مثال: جاء محمدٌ وعليٌّ (عليٌّ: معطوف على محمد مرفوع)
+
+▌ البدل
+- البدل يحل محل المُبدَل منه في المعنى ويتبعه في إعرابه
+- أنواعه: بدل كل من كل / بدل بعض من كل / بدل اشتمال / بدل غلط
+- مثال: جاء أخوكَ محمدٌ (محمدٌ: بدل مرفوع)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 الثالث عشر: الحال والتمييز 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ الحال
+- اسم منصوب نكرة يبين هيئة صاحبه وقت وقوع الفعل
+- صاحب الحال: الفاعل غالباً، أو المفعول، أو المبتدأ
+- مثال: "جاء الطالبُ مسرعاً" — مسرعاً: حال منصوب بالفتحة
+- الحال الجملة: جاء محمدٌ يضحكُ (جملة يضحك: في محل نصب حال)
+- الحال شبه جملة: جلستُ أمامَ المعلمِ (أمام: في محل نصب حال)
+
+▌ التمييز
+- اسم منصوب نكرة يُزيل الغموض عن اسم أو جملة قبله
+- تمييز الذات (الملفوظ): يزيل غموض اسم مبهم قبله مثل الأعداد والمقاييس
+  مثال: عندي عشرونَ كتاباً / اشتريتُ كيلو سكراً
+- تمييز النسبة (الملحوظ): يزيل غموض الجملة
+  مثال: طابَ محمدٌ نفساً / امتلأَ الإناءُ ماءً
+- تمييز العدد: من 3 إلى 10 جمع مجرور، من 11 إلى 99 مفرد منصوب
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 الرابع عشر: الظروف 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ ظرف الزمان: يدل على وقت الفعل (اليوم / الآن / أمس / غداً / حين / عندما / لمّا / إذ / إذا)
+▌ ظرف المكان: يدل على مكان الفعل (أمام / خلف / فوق / تحت / يمين / شمال / عند / لدى / هنا / هناك)
+
+إعرابهما: منصوبان دايماً (على الظرفية)، وكلاهما في محل نصب متعلق بالفعل قبله
+مثال: جلستُ أمامَ الفصلِ — أمامَ: ظرف مكان منصوب، وهو مضاف، الفصلِ: مضاف إليه مجرور
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 الخامس عشر: حروف الجر 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ حروف الجر الأصلية:
+من / إلى / عن / على / في / الباء / اللام / الكاف / الواو / التاء / حتى / خلا / عدا / حاشا / منذ / مذ / رُبَّ
+
+▌ حروف الجر الزائدة (تجر لفظاً لا محلاً):
+- الباء الزائدة: تأتي في خبر ليس وما الحجازية وفي المفعول به أحياناً
+  مثال: "ليس الجمالُ بالثيابِ" — بالثياب: الباء زائدة، الثياب: مجرور لفظاً منصوب محلاً خبر ليس
+- مِن الزائدة: تأتي بعد نفي أو نهي أو استفهام
+  مثال: "ما جاءَ مِن أحدٍ" — من: زائدة، أحد: مجرور لفظاً مرفوع محلاً فاعل
+- اللام الزائدة: تأتي لتقوية العامل الضعيف
+  مثال: "ردِفَ لكم" / "فعّال لِما يريد"
+- رُبَّ: للتقليل أحياناً والتكثير أحياناً (بحسب السياق)
+
+▌ أنواع الواو:
+١) واو العطف: تربط بين متماثلين (جاء محمدٌ وعليٌّ)
+٢) واو الحال: تسبق جملة حالية (جئتُ وأنا مسرعٌ) — والجملة بعدها في محل نصب حال
+٣) واو المعية: تنصب الفعل المضارع بأن مضمرة — تأتي بعد نفي أو طلب (لا تأكلْ وتشربَ)
+٤) واو الجماعة: ضمير متصل في محل رفع فاعل (ذهبوا — الواو فاعل)
+٥) واو رُبَّ: حرف جر شبيه برُبَّ (وليلٍ كموج البحر أرخى سدوله)
+٦) واو القسم: تجر المقسم به (والله لأجتهدَنَّ)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 السادس عشر: الفعل اللازم والمتعدي 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ الفعل اللازم
+- لا يحتاج مفعولاً به ليتم معناه
+- مثال: ذهبَ / جلسَ / نامَ / مرضَ / طالَ
+- لا يُبنى للمجهول إلا بحيلة (أضافة جار ومجرور أو ظرف)
+- طريقة التعرف عليه: اسأل "من؟" بعد الفعل — لو ما لقيتش مفعول، هو لازم
+
+▌ الفعل المتعدي
+- يحتاج مفعولاً به ليتم معناه
+- متعدٍّ لمفعول واحد: أكلَ / شربَ / ضربَ / رأى / قرأ
+- متعدٍّ لمفعولين من باب (أعطى): أعطيتُ الفقيرَ مالاً — مفعولان كلاهما اسم
+- متعدٍّ لمفعولين أصلهما مبتدأ وخبر (أفعال القلوب): ظنّ / حسِب / خال / زعم / علِم / رأى / وجد / اتخذ / جعل / حجا
+  مثال: ظننتُ محمداً مجتهداً (محمداً: مفعول أول، مجتهداً: مفعول ثانٍ)
+- متعدٍّ لثلاثة مفاعيل: أعلم / أرى / نبّأ / خبّر / أنبأ / حدّث
+  مثال: أعلمتُ الطالبَ الدرسَ مفيداً
+
+▌ طرق معرفة الفعل المتعدي واللازم:
+١) قبول تاء المفعول: انكسرَ الزجاجُ (لا تقول: كُسِرَ الزجاجُ ← هنا متعدٍّ!) / كُسِرَ الزجاجُ صح ← متعدٍّ
+٢) الوقوع على مفعول به مباشرة: قرأتُ الكتابَ (قرأ متعدٍّ)
+٣) بعض الأوزان تدل على اللزوم: فَعِلَ للأحوال والأمراض (مرِضَ / فَرِحَ)، فَعُلَ للسجايا والطبائع (كَرُمَ / شَجُعَ)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 السابع عشر: أسلوب الاستثناء 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ بـ "إلا":
+- الاستثناء التام المثبت: المستثنى منصوب دائماً
+  مثال: جاء الطلابُ إلا محمداً (محمداً: مستثنى منصوب)
+- الاستثناء التام المنفي: المستثنى يجوز فيه النصب أو البدلية
+  مثال: ما جاء الطلابُ إلا محمداً/محمدٌ
+- الاستثناء المفرّغ (محذوف المستثنى منه): المستثنى يعرب حسب موقعه من الجملة
+  مثال: ما جاءَ إلا محمدٌ (محمدٌ: فاعل مرفوع، لا نقول مستثنى)
+
+▌ بـ "غير وسوى":
+- تُعرَبان إعراب المستثنى بـ إلا، ويُجر ما بعدهما (مضاف إليه)
+  مثال: جاء الطلابُ غيرَ محمدٍ (غيرَ: مستثنى منصوب، محمدٍ: مضاف إليه)
+
+▌ بـ "خلا وعدا وحاشا":
+- يجوز أن يكون ما بعدها منصوباً على أنه مفعول به (إذا اعتُبرت أفعالاً)
+- أو مجروراً بحرف جر (إذا اعتُبرت حروف جر)
+  مثال: جاء الطلابُ خلا محمداً / خلا محمدٍ
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 الثامن عشر: اسم الفاعل واسم المفعول وصيغ المبالغة 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ اسم الفاعل
+- صياغته من الثلاثي: على وزن فاعل (كاتب / ذاهب / قارئ)
+- من غير الثلاثي: مضارعه مع إبدال حرف المضارعة ميماً مضمومة وكسر ما قبل الآخر
+  مثال: أكرمَ ← يُكرِمُ ← مُكرِم
+
+▌ عمل اسم الفاعل:
+يعمل عمل فعله إذا:
+- اعتمد على نفي أو استفهام أو كان في جملة وصفية
+- أو دلّ على الحال أو الاستقبال
+  مثال: "أمجتهدٌ الطالبُ درسَه؟" — مجتهدٌ: اسم فاعل عامل رفع الطالبَ فاعلاً ونصب درسَه مفعولاً
+
+▌ اسم المفعول
+- من الثلاثي: على وزن مفعول (مكتوب / مضروب / مسموع)
+- من غير الثلاثي: كاسم الفاعل لكن مع فتح ما قبل الآخر: مُكرَم / مُعلَّم
+
+▌ صيغ المبالغة
+أوزانها: فعّال / مِفعال / فَعول / فَعيل / فَعِل
+أمثلة: كذّاب / مِعطاء / صبور / رحيم / حَذِر
+- تعمل عمل اسم الفاعل بنفس الشروط
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 التاسع عشر: أسلوب المدح والذم والتعجب والشرط 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ نعم وبئس (المدح والذم)
+- نعم وبئس: فعلان جامدان مبنيان على الفتح
+- الفاعل: إما محلى بأل أو مضاف لمحلى بأل أو ضمير مستتر
+- المخصوص بالمدح أو الذم: يأتي بعدهما ويعرب مبتدأ (خبره الجملة قبله) أو خبراً لمبتدأ محذوف
+  مثال: "نعم الطالبُ محمدٌ" — نعم: فعل مدح، الطالبُ: فاعل، محمدٌ: مخصوص بالمدح مبتدأ مؤخر
+
+▌ حبّذا ولا حبّذا
+- حبّ: فعل مدح، ذا: فاعله — المخصوص يأتي بعده
+  مثال: حبّذا الصدقُ — الصدقُ: مخصوص بالمدح
+
+▌ التعجب
+صيغتان: ما أفعلَه / أفعِل به
+- ما أجملَ الربيعَ! — ما: تعجبية مبتدأ، أجملَ: فعل ماضٍ، الربيعَ: مفعول به
+- أجمِلْ بالربيعِ! — أجمِلْ: فعل أمر جاء للتعجب، بالربيع: فاعل مجرور لفظاً مرفوع محلاً
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 العشرون: الإغراء والتحذير والاختصاص 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ الإغراء
+- حثّ المخاطب على فعل أمر محمود
+- المُغرى به: اسم منصوب
+  مثال: الصدقَ الصدقَ (التكرار للتوكيد) / الصلاةَ يا محمدُ
+
+▌ التحذير
+- تنبيه المخاطب على أمر مذموم ليتجنبه
+- المحذّر منه: منصوب
+  مثال: إيّاكَ والكذبَ / الكذبَ الكذبَ
+
+▌ الاختصاص
+- تخصيص حكم بضمير سبق ذكره بواسطة اسم منصوب بين قوسين أو بعد أيّها/أيتها
+  مثال: نحن — المعلمينَ — نُحبّ الطلابَ (المعلمين: مفعول به لفعل محذوف تقديره أخص)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 الواحد والعشرون: كلا وكلتا 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- تُعرَبان إعراب المثنى (بالألف رفعاً، والياء نصباً وجراً) لكن فقط إذا أُضيفا لضمير
+- إذا أُضيفا لاسم ظاهر: يعربان بحركات مقدرة على الألف (لا يتغيران شكلاً)
+  مثال: جاء كلا الرجلين (مبتدأ مرفوع بضمة مقدرة)
+  جاء كلاهما (مبتدأ مرفوع بالألف لأنه مضاف لضمير)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 الثاني والعشرون: اسم الفعل 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- كلمة تدل على معنى الفعل ولا تقبل علاماته
+- لا تتصرف ولا تتأثر بالعوامل
+- أنواعه: اسم فعل ماضٍ / مضارع / أمر
+
+أمثلة:
+- هيهاتَ / شتّانَ / سرعانَ (أفعال ماضية)
+- أوّه / وَيْ / آهِ (أفعال مضارعة)
+- صَهٍ / آمينَ / حيّ / هلمَّ / إيهِ / دونَك / عليكَ / إليكَ (أفعال أمر)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【 الثالث والعشرون: قواعد عامة مهمة 】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▌ علامات الإعراب الأصلية والفرعية:
+- الرفع: الضمة أصل / الواو (مثنى ملحق وجمع مذكر وأسماء خمسة) / الألف (مثنى)
+- النصب: الفتحة أصل / الياء (مثنى وجمع مذكر وأسماء خمسة) / الكسرة (جمع مؤنث سالم) / الألف (أسماء خمسة)
+- الجر: الكسرة أصل / الياء (مثنى وجمع مذكر وأسماء خمسة) / الفتحة (ممنوع من الصرف)
+- الجزم: السكون أصل / حذف النون (أفعال خمسة) / حذف حرف العلة (معتل الآخر)
+
+▌ الجمل التي لها محل من الإعراب:
+١- الخبر ٢- الحال ٣- المفعول به ٤- المضاف إليه ٥- الشرط (أحياناً) ٦- جواب القسم ٧- التابع لما له محل
+
+▌ الجمل التي لا محل لها من الإعراب:
+١- الابتدائية ٢- صلة الموصول ٣- الاعتراضية ٤- التفسيرية ٥- جواب القسم المقترن باللام ٦- جواب الشرط غير الجازم ٧- التابع لما لا محل له
+
+📌 قواعد مهمة في الشرح:
+- لما تشرح درس: ابدأ بتعريف بسيط بالعامية، وبعدين هات أمثلة واضحة، واشرح الإعراب خطوة بخطوة
+- نبّه على الأخطاء الشائعة بطريقة خفيفة
 - لو السؤال بره اللغة العربية، قول بلطف إنك متخصص في المنهج ده بس
 - المنصة اسمها "الظلال في اللغة العربية" بإشراف مستر محمد عبد المنعم`;
 
+// =====================================================================
+
 const SUGGESTIONS = [
-  'ايه هو المبتدأ والخبر؟',
-  'اشرحلي كان وأخواتها بأمثلة',
-  'فيه فرق بين الحال والتمييز؟',
-  'أعرب: إن الله على كل شيء قدير',
-  'ايه هي الأفعال الخمسة وبتتعرب ازاي؟',
-  'اشرحلي أسلوب الشرط بالتفصيل',
-  'فيه فرق بين اسم الفاعل واسم المفعول؟',
-  'اشرحلي لا النافية للجنس',
+  'ايه هو الممنوع من الصرف وامتى بيتصرف؟',
+  'فرّق بين واو العطف وواو الحال وواو المعية',
+  'اشرحلي حروف الجر الزائدة بأمثلة',
+  'الفرق بين الفعل اللازم والمتعدي وازاي أعرفهم؟',
+  'اشرحلي اسم الفاعل واسم المفعول وصيغ المبالغة',
+  'امتى يقترن جواب الشرط بالفاء؟',
+  'اشرحلي كلا وكلتا وامتى تتعرب بالألف والياء',
+  'اشرحلي أسلوب الاستثناء بـ إلا وغير وخلا',
+  'ايه هي الأفعال المتعدية لمفعولين وامثلة؟',
+  'اشرحلي لا النافية للجنس بالتفصيل',
+  'أعرب: جاء الطلابُ إلا محمداً',
+  'اشرحلي المنادى وأنواعه',
 ];
 
 let userIsReading = false;
 let scrollLock = false;
 
 function getMsgs() { return document.getElementById('messages'); }
-
-function isNearBottom(el) {
-  return el.scrollHeight - el.scrollTop - el.clientHeight < 150;
-}
-
+function isNearBottom(el) { return el.scrollHeight - el.scrollTop - el.clientHeight < 150; }
 function scrollToBottom() {
-  const el = getMsgs();
-  if (!el) return;
-  scrollLock = true;
-  el.scrollTop = el.scrollHeight;
+  const el = getMsgs(); if (!el) return;
+  scrollLock = true; el.scrollTop = el.scrollHeight;
   setTimeout(() => { scrollLock = false; }, 50);
 }
-
-function autoScroll() {
-  if (!userIsReading) scrollToBottom();
-}
-
+function autoScroll() { if (!userIsReading) scrollToBottom(); }
 function initScrollListener() {
-  const el = getMsgs();
-  if (!el || el._scrollInit) return;
+  const el = getMsgs(); if (!el || el._scrollInit) return;
   el._scrollInit = true;
-  el.addEventListener('scroll', () => {
-    if (scrollLock) return;
-    userIsReading = !isNearBottom(el);
-  }, { passive: true });
+  el.addEventListener('scroll', () => { if (scrollLock) return; userIsReading = !isNearBottom(el); }, { passive: true });
 }
-
 function saveChat() {
-  try {
-    localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(chatHistory));
-    localStorage.setItem(STORAGE_KEY_MESSAGES, getMsgs().innerHTML);
-  } catch(e) {}
+  try { localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(chatHistory)); localStorage.setItem(STORAGE_KEY_MESSAGES, getMsgs().innerHTML); } catch(e) {}
 }
-
 function loadChat() {
   try {
     const hist = localStorage.getItem(STORAGE_KEY_HISTORY);
     const msgs = localStorage.getItem(STORAGE_KEY_MESSAGES);
-    if (hist && msgs) {
-      chatHistory = JSON.parse(hist);
-      const el = getMsgs();
-      el.innerHTML = msgs;
-      showMessages();
-      scrollToBottom();
-      return true;
-    }
-  } catch(e) {}
-  return false;
+    if (hist && msgs) { chatHistory = JSON.parse(hist); const el = getMsgs(); el.innerHTML = msgs; showMessages(); scrollToBottom(); return true; }
+  } catch(e) {} return false;
 }
-
-function wipeChatStorage() {
-  localStorage.removeItem(STORAGE_KEY_HISTORY);
-  localStorage.removeItem(STORAGE_KEY_MESSAGES);
-}
-
-function askClear() {
-  document.getElementById('confirmModal').classList.add('show');
-}
-function closeModal() {
-  document.getElementById('confirmModal').classList.remove('show');
-}
-function confirmClear() {
-  closeModal();
-  clearChat();
-}
+function wipeChatStorage() { localStorage.removeItem(STORAGE_KEY_HISTORY); localStorage.removeItem(STORAGE_KEY_MESSAGES); }
+function askClear() { document.getElementById('confirmModal').classList.add('show'); }
+function closeModal() { document.getElementById('confirmModal').classList.remove('show'); }
+function confirmClear() { closeModal(); clearChat(); }
 
 async function callAPI(messages, attempt = 0) {
   const model = GEMINI_MODELS[currentModelIndex];
   updateModelBadge(model);
-
   const sysMsg = messages.find(m => m.role === 'system');
   const chatMsgs = messages.filter(m => m.role !== 'system');
-
-  const contents = chatMsgs.map(m => ({
-    role: m.role === 'assistant' ? 'model' : 'user',
-    parts: [{ text: m.content }]
-  }));
-
-  const body = {
-    systemInstruction: sysMsg ? { parts: [{ text: sysMsg.content }] } : undefined,
-    contents,
-    generationConfig: { maxOutputTokens: 1200, temperature: 0.7 }
-  };
-
+  const contents = chatMsgs.map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
+  const body = { systemInstruction: sysMsg ? { parts: [{ text: sysMsg.content }] } : undefined, contents, generationConfig: { maxOutputTokens: 1500, temperature: 0.7 } };
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
-
+  const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   if (res.status === 429) {
     const next = currentModelIndex + 1;
-    if (next < GEMINI_MODELS.length) {
-      currentModelIndex = next;
-      showRetry(`⟳ جاري التبديل إلى ${GEMINI_MODELS[next]}...`);
-      await sleep(1500);
-      return callAPI(messages, attempt + 1);
-    }
-    showRetry('⏳ الحد اليومي اتجاوز، انتظر ثوانٍ...');
-    await sleep(5000);
-    currentModelIndex = 0;
+    if (next < GEMINI_MODELS.length) { currentModelIndex = next; showRetry(`⟳ جاري التبديل إلى ${GEMINI_MODELS[next]}...`); await sleep(1500); return callAPI(messages, attempt + 1); }
+    showRetry('⏳ الحد اليومي اتجاوز، انتظر ثوانٍ...'); await sleep(5000); currentModelIndex = 0;
     if (attempt < 2) return callAPI(messages, attempt + 1);
     throw new Error('تجاوزت الحد اليومي — حاول بكره');
   }
-
   if (res.status === 400) throw new Error('400 — الـ Key غلط، تأكد منه');
   if (res.status === 403) throw new Error('403 — الـ Key مش مفعّل، روح aistudio.google.com');
-  if (!res.ok) {
-    if (attempt < 1) { await sleep(2000); return callAPI(messages, attempt + 1); }
-    throw new Error(`خطأ ${res.status}`);
-  }
-
+  if (!res.ok) { if (attempt < 1) { await sleep(2000); return callAPI(messages, attempt + 1); } throw new Error(`خطأ ${res.status}`); }
   hideRetry();
   const data = await res.json();
   return data.candidates?.[0]?.content?.parts?.[0]?.text || 'مش فاهم السؤال، حاول تاني!';
@@ -404,162 +784,68 @@ async function sendMessage(text) {
   const inp = document.getElementById('chatInput');
   const q = (text || inp.value).trim();
   if (!q || isLoading) return;
-
-  inp.value = '';
-  inp.style.height = 'auto';
+  inp.value = ''; inp.style.height = 'auto';
   document.getElementById('sendBtn').disabled = true;
-  isLoading = true;
-  userIsReading = false;
-
-  showMessages();
-  addMessage('user', q);
+  isLoading = true; userIsReading = false;
+  showMessages(); addMessage('user', q);
   chatHistory.push({ role: 'user', content: q });
-
   const typingId = 'typing_' + Date.now();
   addTyping(typingId);
-
   try {
     const msgs = [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory];
     const reply = await callAPI(msgs);
-    removeTyping(typingId);
-    addMessage('ai', reply);
-    chatHistory.push({ role: 'assistant', content: reply });
-    saveChat();
-  } catch (e) {
-    removeTyping(typingId);
-    hideRetry();
-    addError('⚠️ ' + e.message);
-    chatHistory.pop();
-  }
-
-  isLoading = false;
-  document.getElementById('sendBtn').disabled = false;
+    removeTyping(typingId); addMessage('ai', reply);
+    chatHistory.push({ role: 'assistant', content: reply }); saveChat();
+  } catch (e) { removeTyping(typingId); hideRetry(); addError('⚠️ ' + e.message); chatHistory.pop(); }
+  isLoading = false; document.getElementById('sendBtn').disabled = false;
 }
 
 function addMessage(role, text) {
-  const el = getMsgs();
-  const row = document.createElement('div');
+  const el = getMsgs(); const row = document.createElement('div');
   row.className = 'msg-row ' + (role === 'user' ? 'user' : 'ai');
   const isUser = role === 'user';
-  row.innerHTML = `
-    ${isUser ? '<div class="msg-avatar user-av">🎓</div>' : ''}
-    <div class="msg-bubble ${isUser ? 'user-b' : 'ai-b'}">${escHtml(text)}</div>
-    ${!isUser ? '<div class="msg-avatar ai-av">✦</div>' : ''}
-  `;
-  el.appendChild(row);
-  setTimeout(() => autoScroll(), 0);
+  row.innerHTML = `${isUser ? '<div class="msg-avatar user-av">🎓</div>' : ''}<div class="msg-bubble ${isUser ? 'user-b' : 'ai-b'}">${escHtml(text)}</div>${!isUser ? '<div class="msg-avatar ai-av">✦</div>' : ''}`;
+  el.appendChild(row); setTimeout(() => autoScroll(), 0);
 }
-
 function addTyping(id) {
-  const el = getMsgs();
-  const row = document.createElement('div');
-  row.className = 'msg-row ai';
-  row.id = id;
-  row.innerHTML = `
-    <div class="msg-bubble ai-b" style="padding:14px 20px;">
-      <div class="typing-dots"><span></span><span></span><span></span></div>
-    </div>
-    <div class="msg-avatar ai-av">✦</div>
-  `;
-  el.appendChild(row);
-  setTimeout(() => autoScroll(), 0);
+  const el = getMsgs(); const row = document.createElement('div');
+  row.className = 'msg-row ai'; row.id = id;
+  row.innerHTML = `<div class="msg-bubble ai-b" style="padding:14px 20px;"><div class="typing-dots"><span></span><span></span><span></span></div></div><div class="msg-avatar ai-av">✦</div>`;
+  el.appendChild(row); setTimeout(() => autoScroll(), 0);
 }
-
-function removeTyping(id) {
-  const el = document.getElementById(id);
-  if (el) el.remove();
-}
-
-function addError(msg) {
-  const el = getMsgs();
-  const d = document.createElement('div');
-  d.className = 'error-msg';
-  d.textContent = msg;
-  el.appendChild(d);
-  setTimeout(() => autoScroll(), 0);
-}
+function removeTyping(id) { const el = document.getElementById(id); if (el) el.remove(); }
+function addError(msg) { const el = getMsgs(); const d = document.createElement('div'); d.className = 'error-msg'; d.textContent = msg; el.appendChild(d); setTimeout(() => autoScroll(), 0); }
 
 let retryEl = null;
-function showRetry(msg) {
-  hideRetry();
-  retryEl = document.createElement('div');
-  retryEl.className = 'retry-status';
-  retryEl.textContent = msg;
-  getMsgs().appendChild(retryEl);
-  setTimeout(() => autoScroll(), 0);
-}
-function hideRetry() {
-  if (retryEl) { retryEl.remove(); retryEl = null; }
-}
-
-function updateModelBadge(name) {
-  const b = document.getElementById('modelBadge');
-  if (b) b.textContent = name;
-}
-
-function escHtml(t) {
-  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
-}
-
-function showMessages() {
-  document.getElementById('emptyState').style.display = 'none';
-  const el = getMsgs();
-  el.style.display = 'block';
-  initScrollListener();
-}
+function showRetry(msg) { hideRetry(); retryEl = document.createElement('div'); retryEl.className = 'retry-status'; retryEl.textContent = msg; getMsgs().appendChild(retryEl); setTimeout(() => autoScroll(), 0); }
+function hideRetry() { if (retryEl) { retryEl.remove(); retryEl = null; } }
+function updateModelBadge(name) { const b = document.getElementById('modelBadge'); if (b) b.textContent = name; }
+function escHtml(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
+function showMessages() { document.getElementById('emptyState').style.display = 'none'; const el = getMsgs(); el.style.display = 'block'; initScrollListener(); }
 
 function clearChat() {
-  chatHistory = [];
-  currentModelIndex = 0;
-  userIsReading = false;
-  scrollLock = false;
-  wipeChatStorage();
-  updateModelBadge(GEMINI_MODELS[0]);
-  const el = getMsgs();
-  el.innerHTML = '';
-  el._scrollInit = false;
-  el.style.display = 'none';
+  chatHistory = []; currentModelIndex = 0; userIsReading = false; scrollLock = false;
+  wipeChatStorage(); updateModelBadge(GEMINI_MODELS[0]);
+  const el = getMsgs(); el.innerHTML = ''; el._scrollInit = false; el.style.display = 'none';
   document.getElementById('emptyState').style.display = 'flex';
   setTimeout(() => {
     showMessages();
-    addMessage('ai', 'ازيك يا صديقي! عامل إيه؟ 😊\nأنا محمد، مساعدك الشخصي في اللغة العربية!\nأقدر أساعدك في إيه النهارده؟ 🌟');
+    addMessage('ai', 'ازيك يا صديقي! عامل إيه؟ 😊\nأنا محمد، مساعدك الشخصي في اللغة العربية!\nأقدر أساعدك في أي باب من أبواب النحو والصرف والبلاغة للثانوية العامة 🌟\nاسأل في أي حاجة!');
     saveChat();
   }, 400);
 }
 
-function resetKey() {
-  localStorage.removeItem('gemini_api_key');
-  GEMINI_API_KEY = '';
-  document.getElementById('keyInput').value = '';
-  document.getElementById('keyError').style.display = 'none';
-  document.getElementById('keyScreen').style.display = 'flex';
-}
-
-function submitKey() {
-  const val = document.getElementById('keyInput').value.trim();
-  if (val.length < 10) {
-    document.getElementById('keyError').style.display = 'block';
-    return;
-  }
-  GEMINI_API_KEY = val;
-  localStorage.setItem('gemini_api_key', val);
-  document.getElementById('keyScreen').style.display = 'none';
-  document.getElementById('keyError').style.display = 'none';
-}
+function resetKey() { localStorage.removeItem('gemini_api_key'); GEMINI_API_KEY = ''; document.getElementById('keyInput').value = ''; document.getElementById('keyError').style.display = 'none'; document.getElementById('keyScreen').style.display = 'flex'; }
+function submitKey() { const val = document.getElementById('keyInput').value.trim(); if (val.length < 10) { document.getElementById('keyError').style.display = 'block'; return; } GEMINI_API_KEY = val; localStorage.setItem('gemini_api_key', val); document.getElementById('keyScreen').style.display = 'none'; document.getElementById('keyError').style.display = 'none'; }
 
 window.onload = function () {
   const saved = localStorage.getItem('gemini_api_key');
-  if (saved && saved.length > 10) {
-    GEMINI_API_KEY = saved;
-    document.getElementById('keyScreen').style.display = 'none';
-  } else {
-    document.getElementById('keyScreen').style.display = 'flex';
-  }
+  if (saved && saved.length > 10) { GEMINI_API_KEY = saved; document.getElementById('keyScreen').style.display = 'none'; }
+  else { document.getElementById('keyScreen').style.display = 'flex'; }
 
   const pw = document.getElementById('ptcls');
   for (let i = 0; i < 35; i++) {
-    const p = document.createElement('div');
-    p.className = 'ptcl';
+    const p = document.createElement('div'); p.className = 'ptcl';
     const sz = Math.random() * 3 + 0.8;
     p.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;bottom:${Math.random()*-30}px;--t:${8+Math.random()*14}s;--d:${Math.random()*14}s;--op:${0.1+Math.random()*0.2};`;
     pw.appendChild(p);
@@ -567,38 +853,26 @@ window.onload = function () {
 
   const sg = document.getElementById('suggestions');
   SUGGESTIONS.forEach((s, i) => {
-    const b = document.createElement('button');
-    b.className = 'chip';
-    b.textContent = s;
-    b.style.animation = `fadeIn 0.5s ${i * 0.06}s both`;
-    b.onclick = () => sendMessage(s);
-    sg.appendChild(b);
+    const b = document.createElement('button'); b.className = 'chip'; b.textContent = s;
+    b.style.animation = `fadeIn 0.5s ${i * 0.06}s both`; b.onclick = () => sendMessage(s); sg.appendChild(b);
   });
 
   const inp = document.getElementById('chatInput');
-  inp.addEventListener('input', () => {
-    inp.style.height = 'auto';
-    inp.style.height = Math.min(inp.scrollHeight, 140) + 'px';
-    document.getElementById('sendBtn').disabled = !inp.value.trim();
-  });
-  inp.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-  });
-
+  inp.addEventListener('input', () => { inp.style.height = 'auto'; inp.style.height = Math.min(inp.scrollHeight, 140) + 'px'; document.getElementById('sendBtn').disabled = !inp.value.trim(); });
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
   const ki = document.getElementById('keyInput');
   if (ki) ki.addEventListener('keydown', e => { if (e.key === 'Enter') submitKey(); });
 
   updateModelBadge(GEMINI_MODELS[0]);
-
   const loaded = loadChat();
   if (!loaded) {
     setTimeout(() => {
       showMessages();
-      addMessage('ai', 'ازيك يا صديقي! عامل إيه؟ 😊\nأنا محمد، مساعدك الشخصي في اللغة العربية!\nأقدر أساعدك في إيه النهارده؟ 🌟');
+      addMessage('ai', 'ازيك يا صديقي! عامل إيه؟ 😊\nأنا محمد، مساعدك الشخصي في اللغة العربية!\nأقدر أساعدك في أي باب من أبواب النحو والصرف والبلاغة للثانوية العامة 🌟\nاسأل في أي حاجة!');
       saveChat();
     }, 600);
   }
 };
 </script>
 </body>
-</html>
+  </html>
