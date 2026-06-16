@@ -203,7 +203,7 @@ body{
 /* ══════════════════════════════════════
    ⬇️  ضع الـ API Key بتاعك هنا
    ══════════════════════════════════════ */
-let OR_API_KEY = localStorage.getItem("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");
+let OR_API_KEY = localStorage.getItem("or_api_key") || "";
 /* ══════════════════════════════════════ */
 
 const OR_URL = "https://openrouter.ai/api/v1/chat/completions";
@@ -314,7 +314,7 @@ async function sendMessage(text){
       }))
     ];
     const body = {
-      model: 'google/gemini-2.0-flash-exp:free',
+      model: 'meta-llama/llama-3.3-70b-instruct:free',
       messages: messages,
       max_tokens: 1200,
       temperature: 0.7
@@ -342,7 +342,7 @@ async function sendMessage(text){
   } catch(e) {
     console.error('Error:', e);
     removeTyping(typingId);
-    appendError('حدث خطأ في الاتصال — تأكد من الـ API Key وحاول مرة أخرى.');
+    appendError('خطأ: ' + e.message + ' — ' + (e.status||''));
     history.pop();
   }
   loading=false;
@@ -426,4 +426,4 @@ function escHtml(t){
 }
 </script>
 </body>
-</html>
+   </html>
