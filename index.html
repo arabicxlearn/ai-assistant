@@ -167,6 +167,7 @@ body{
     متصل
   </div>
   <button class="nav-clear" id="clearBtn" onclick="clearChat()">محادثة جديدة</button>
+  <button class="nav-clear show" onclick="resetKey()" style="border-color:rgba(200,164,74,0.3);color:#e6c870;">🔑 تغيير الـ Key</button>
 </nav>
 
 <!-- APP -->
@@ -404,6 +405,14 @@ function appendError(msg){
   msgs.scrollTop=msgs.scrollHeight;
 }
 
+function resetKey(){
+  localStorage.removeItem('or_api_key');
+  OR_API_KEY = '';
+  document.getElementById('keyInput').value = '';
+  document.getElementById('keyError').style.display = 'none';
+  document.getElementById('keyScreen').style.display = 'flex';
+}
+
 function submitKey(){
   const val = document.getElementById('keyInput').value.trim();
   if(!val.startsWith('sk-or')){
@@ -426,4 +435,4 @@ function escHtml(t){
 }
 </script>
 </body>
-   </html>
+       </html>
