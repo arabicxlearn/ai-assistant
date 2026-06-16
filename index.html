@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arabic AI Assistant — الظلال في اللغة العربية</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Scheherazade+New:wght@400;500;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   ARABIC AI ASSISTANT — الظلال
+   ══════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#090603;
+  --gold:#c8a44a;
+  --gold-lt:#e6c870;
+  --gold-dim:rgba(200,164,74,0.28);
+  --gold-border:rgba(200,164,74,0.38);
+  --cream:#ede3d5;
+  --cream-dim:#a89880;
+  --lg-blur:saturate(200%) blur(28px);
+  --lg-blur-heavy:saturate(220%) blur(40px);
+  --lg-blur-ultra:saturate(250%) blur(56px);
+}
+html,body{height:100%;overflow:hidden;}
+body{
+  font-family:'Noto Naskh Arabic',serif;
+  background:var(--bg);color:var(--cream);
+  display:flex;flex-direction:column;
+}
+
+/* ═══ BG ═══ */
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(60px);opacity:0.2;animation:orbDrift var(--t,20s) var(--d,0s) ease-in-out infinite alternate;}
+.orb1{width:500px;height:500px;background:rgba(160,100,15,0.35);top:-150px;right:-100px;--t:25s;}
+.orb2{width:350px;height:350px;background:rgba(80,40,8,0.3);bottom:-100px;left:-80px;--t:30s;--d:5s;}
+.orb3{width:200px;height:200px;background:rgba(200,160,50,0.2);top:45%;left:40%;--t:18s;--d:2s;}
+@keyframes orbDrift{0%{transform:translate(0,0) scale(1);}100%{transform:translate(30px,20px) scale(1.1);}}
+
+.ptcl-wrap{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.ptcl{position:absolute;border-radius:50%;background:var(--gold);opacity:0;animation:rise var(--t,9s) var(--d,0s) infinite;}
+@keyframes rise{0%{opacity:0;transform:translateY(0) scale(1);}8%{opacity:var(--op,.2);}92%{opacity:var(--op,.2);}100%{opacity:0;transform:translateY(-110vh) scale(0.4);}}
+
+.cline{position:fixed;top:0;left:50%;width:1px;height:100%;z-index:0;pointer-events:none;background:linear-gradient(to bottom,transparent 0%,rgba(200,164,74,0.05) 25%,rgba(200,164,74,0.05) 75%,transparent 100%);}
+
+/* ═══ NAVBAR ═══ */
+.navbar{
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  z-index:8000;height:62px;
+  width:calc(100% - 40px);max-width:900px;
+  display:flex;align-items:center;padding:0 24px;gap:12px;
+  background:rgba(12,8,4,0.65);
+  backdrop-filter:var(--lg-blur-ultra);-webkit-backdrop-filter:var(--lg-blur-ultra);
+  border:1px solid rgba(255,255,255,0.16);border-radius:999px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.7),inset 0 1px 0 rgba(255,255,255,0.2),0 0 60px rgba(200,164,74,0.06);
+}
+.navbar::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.12) 0%,transparent 100%);border-radius:999px;pointer-events:none;}
+.nav-title{font-family:'Scheherazade New',serif;font-size:clamp(.95rem,2vw,1.25rem);color:var(--cream);flex:1;display:flex;align-items:center;gap:8px;text-shadow:0 1px 8px rgba(0,0,0,0.5);}
+.nav-title .orn{color:var(--gold);animation:glowPulse 3s ease-in-out infinite;}
+.nav-status{display:flex;align-items:center;gap:6px;padding:5px 14px;border-radius:50px;background:rgba(200,164,74,0.1);border:1px solid rgba(200,164,74,0.25);color:var(--gold-lt);font-size:.78rem;box-shadow:inset 0 1px 0 rgba(255,255,255,0.15);}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:statusBlink 2s ease-in-out infinite;}
+@keyframes statusBlink{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.nav-clear{padding:6px 14px;border-radius:50px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:var(--cream-dim);font-size:.78rem;cursor:pointer;font-family:'Noto Naskh Arabic',serif;transition:background .2s;display:none;}
+.nav-clear:hover{background:rgba(255,255,255,0.12);}
+.nav-clear.show{display:block;}
+
+/* ═══ MAIN LAYOUT ═══ */
+.app{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;max-width:820px;width:100%;margin:0 auto;padding:88px 16px 0;}
+
+/* ═══ MESSAGES ═══ */
+.messages{flex:1;overflow-y:auto;padding-bottom:20px;padding-top:10px;scroll-behavior:smooth;}
+.messages::-webkit-scrollbar{width:4px;}
+.messages::-webkit-scrollbar-track{background:transparent;}
+.messages::-webkit-scrollbar-thumb{background:rgba(200,164,74,0.2);border-radius:4px;}
+
+.msg-row{display:flex;gap:10px;margin-bottom:14px;animation:msgIn .35s cubic-bezier(.25,.8,.25,1) both;}
+.msg-row.user{justify-content:flex-start;}
+.msg-row.ai{justify-content:flex-end;}
+
+.msg-avatar{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-top:2px;}
+.msg-avatar.user-av{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);box-shadow:inset 0 1px 0 rgba(255,255,255,0.2);}
+.msg-avatar.ai-av{background:linear-gradient(135deg,rgba(200,164,74,0.2),rgba(200,164,74,0.08));border:1px solid rgba(200,164,74,0.35);box-shadow:0 0 16px rgba(200,164,74,0.2),inset 0 1px 0 rgba(255,255,255,0.2);color:var(--gold);}
+
+.msg-bubble{max-width:75%;padding:13px 17px;border-radius:18px;font-size:.97rem;line-height:1.85;direction:rtl;text-align:right;white-space:pre-wrap;word-break:break-word;position:relative;}
+.msg-bubble.user-b{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:18px 18px 18px 4px;box-shadow:0 4px 20px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.12);}
+.msg-bubble.ai-b{background:linear-gradient(135deg,rgba(200,164,74,0.12) 0%,rgba(200,164,74,0.06) 100%);border:1px solid rgba(200,164,74,0.28);border-radius:18px 18px 4px 18px;box-shadow:0 4px 24px rgba(0,0,0,0.4),inset 0 1px 0 rgba(200,164,74,0.15),0 0 20px rgba(200,164,74,0.05);}
+.msg-bubble.ai-b::before{content:'';position:absolute;top:-1px;right:0;left:0;height:2px;background:linear-gradient(to left,transparent,rgba(200,164,74,0.5),transparent);border-radius:18px 18px 0 0;}
+
+@keyframes msgIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+/* ═══ TYPING ═══ */
+.typing-dots{display:flex;gap:5px;align-items:center;padding:4px 0;}
+.typing-dots span{width:8px;height:8px;border-radius:50%;background:var(--gold);opacity:0.6;animation:bounce 1.2s ease-in-out infinite;}
+.typing-dots span:nth-child(2){animation-delay:.2s;}
+.typing-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:0.5;}30%{transform:translateY(-6px);opacity:1;}}
+
+/* ═══ EMPTY STATE ═══ */
+.empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:160px;animation:fadeIn .7s both;}
+.empty-icon{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,rgba(200,164,74,0.18),rgba(200,164,74,0.06));border:1px solid rgba(200,164,74,0.3);display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:var(--gold);margin-bottom:22px;box-shadow:0 0 40px rgba(200,164,74,0.2),inset 0 1px 0 rgba(255,255,255,0.2);animation:glowPulse 3s ease-in-out infinite;}
+.empty-title{font-family:'Scheherazade New',serif;font-size:clamp(1.7rem,4vw,2.4rem);color:var(--gold-lt);margin-bottom:10px;text-align:center;animation:glowPulse 4s ease-in-out infinite;}
+.empty-sub{font-family:'Amiri',serif;color:var(--cream-dim);font-size:1.05rem;text-align:center;max-width:380px;line-height:2;margin-bottom:10px;font-style:italic;}
+.empty-stats{display:flex;align-items:center;gap:8px;margin-bottom:32px;padding:5px 18px;border-radius:50px;background:rgba(200,164,74,0.07);border:1px solid rgba(200,164,74,0.18);color:var(--gold);font-size:.82rem;}
+.empty-stats span.sep{opacity:.35;}
+.suggestions{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;max-width:600px;}
+.chip{padding:8px 16px;border-radius:50px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);color:#c8c0b0;font-size:.85rem;cursor:pointer;font-family:'Noto Naskh Arabic',serif;transition:all .2s;box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);}
+.chip:hover{background:rgba(200,164,74,0.15);border-color:rgba(200,164,74,0.4);transform:translateY(-2px);}
+
+/* ═══ ERROR ═══ */
+.error-msg{text-align:center;color:#f87171;font-size:.88rem;padding:10px 16px;border-radius:12px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);margin-bottom:12px;}
+
+/* ═══ INPUT BAR ═══ */
+.input-bar{position:fixed;bottom:0;left:0;right:0;z-index:7000;padding:12px 16px 18px;background:linear-gradient(to top,rgba(9,6,3,0.98) 70%,transparent);}
+.input-inner{max-width:820px;margin:0 auto;display:flex;gap:10px;align-items:flex-end;background:rgba(18,12,6,0.75);backdrop-filter:var(--lg-blur);-webkit-backdrop-filter:var(--lg-blur);border:1px solid rgba(200,164,74,0.22);border-radius:28px;padding:10px 10px 10px 14px;box-shadow:0 8px 40px rgba(0,0,0,0.7),inset 0 1px 0 rgba(255,255,255,0.1),0 0 40px rgba(200,164,74,0.05);position:relative;overflow:hidden;}
+.input-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to left,transparent,rgba(200,164,74,0.4),transparent);}
+#chatInput{flex:1;background:transparent;border:none;outline:none;color:var(--cream);font-size:.97rem;font-family:'Noto Naskh Arabic',serif;line-height:1.75;direction:rtl;text-align:right;resize:none;max-height:140px;overflow-y:auto;padding-top:4px;}
+#chatInput::placeholder{color:rgba(168,152,128,0.6);}
+.send-btn{width:44px;height:44px;border-radius:50%;flex-shrink:0;background:rgba(200,164,74,0.18);border:1px solid rgba(200,164,74,0.35);color:var(--gold-lt);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(200,164,74,0.15),inset 0 1px 0 rgba(255,255,255,0.2);}
+.send-btn:hover:not(:disabled){background:rgba(200,164,74,0.3);transform:scale(1.08);}
+.send-btn:disabled{opacity:.35;cursor:not-allowed;}
+.input-hint{text-align:center;color:var(--cream-dim);font-size:.72rem;margin-top:7px;opacity:.5;}
+
+@keyframes glowPulse{0%,100%{text-shadow:0 0 20px rgba(200,164,74,0.3);}50%{text-shadow:0 0 50px rgba(200,164,74,0.8),0 0 80px rgba(200,164,74,0.3);}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:600px){
+  .navbar{width:calc(100% - 24px);top:10px;}
+  .msg-bubble{max-width:88%;}
+  .empty-title{font-size:1.6rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- BG -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+<div class="ptcl-wrap" id="ptcls"></div>
+<div class="cline"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-title">
+    <span class="orn">✦</span>
+    Arabic AI Assistant
+    <span class="orn">✦</span>
+  </div>
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    متصل
+  </div>
+  <button class="nav-clear" id="clearBtn" onclick="clearChat()">محادثة جديدة</button>
+</nav>
+
+<!-- APP -->
+<div class="app">
+  <!-- Empty State -->
+  <div class="empty" id="emptyState">
+    <div class="empty-icon">✦</div>
+    <h1 class="empty-title">Arabic AI Assistant</h1>
+    <p class="empty-sub">مساعدك الذكي في النحو والصرف والبلاغة<br>اسأل عن أي درس من دروس المنصة</p>
+    <div class="empty-stats">
+      <span>٤٩ محاضرة</span><span class="sep">|</span>
+      <span>٣ مجموعات</span><span class="sep">|</span>
+      <span>الثالث الثانوي</span>
+    </div>
+    <div class="suggestions" id="suggestions"></div>
+  </div>
+
+  <!-- Messages -->
+  <div class="messages" id="messages" style="display:none;"></div>
+</div>
+
+<!-- INPUT BAR -->
+<div class="input-bar">
+  <div class="input-inner">
+    <textarea id="chatInput" rows="1" placeholder="اسأل عن أي درس في النحو أو الصرف أو البلاغة..."></textarea>
+    <button class="send-btn" id="sendBtn" onclick="sendMessage()" disabled>
+      <i class="fas fa-paper-plane" style="transform:scaleX(-1);"></i>
+    </button>
+  </div>
+  <p class="input-hint">الظلال في اللغة العربية — منصة تعليمية للثالث الثانوي</p>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   ⬇️  ضع الـ API Key بتاعك هنا
+   ══════════════════════════════════════ */
+const GEMINI_API_KEY = "AQ.Ab8RN6LyYFYKjPW2K6LkB4Wrt2P-hV1asQXfJ4lMYPSNhk2PrQ";
+/* ══════════════════════════════════════ */
+
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+const SYSTEM_PROMPT = `أنت مساعد ذكاء اصطناعي متخصص في تدريس اللغة العربية — النحو والصرف والبلاغة — لطلاب الصف الثالث الثانوي في مصر.
+أنت تعمل على منصة "الظلال في اللغة العربية" بإشراف مستر محمد عبد المنعم.
+
+📚 المنهج الكامل الذي تغطيه:
+
+【 المجموعة الأولى — 14 محاضرة 】
+١- المبتدأ والخبر | ٢- أنواع الخبر | ٣- أنواع الفعل | ٤- الفاعل والضمائر | ٥- المفعول به والضمائر | ٦- تاء الفاعل وتاء التأنيث | ٧- النكرة والمعرفة والمضاف إليه | ٨- بناء الأفعال | ٩- المثنى | ١٠- جمع المذكر السالم | ١١- جمع المؤنث السالم | ١٢- النعت | ١٣- الحال | ١٤- كان وأخواتها
+
+【 المجموعة الثانية — 19 محاضرة 】
+١- الأفعال الخمسة | ٢- الأسماء الخمسة | ٣- نصب المضارع | ٤- جزم المضارع | ٥- المبني للمجهول ونائب الفاعل | ٦- المنادي | ٧- فاء السببية | ٨- لا النافية للجنس | ٩- أسلوب الشرط | ١٠- جزم المضارع في جواب الطلب | ١١- العطف | ١٢- التوكيد المعنوي | ١٣- التوكيد اللفظي | ١٤- التمييز الملفوظ والملحوظ | ١٥- تمييز العدد | ١٦- كلا وكلتا | ١٧- الإغراء | ١٨- التحذير | ١٩- الاختصاص
+
+【 المجموعة الثالثة — 16 محاضرة 】
+١- أسلوب المدح والذم | ٢- الاستثناء بـ إلا | ٣- الاستثناء بـ غير وسوى | ٤- الاستثناء بـ خلا وعدا وحاشا | ٥- اسم الفعل | ٦- اسم الفاعل | ٧- أعمال اسم الفاعل | ٨- اسم المفعول | ٩- أعمال اسم المفعول | ١٠- صيغة المبالغة | ١١- أعمال صيغ المبالغة | ١٢- الأفعال المتعدية لمفعولين | ١٣- البدل | ١٤- الظروف | ١٥- اقتران جواب الشرط بالفاء | ١٦- حروف الجر
+
+📌 قواعد الإجابة:
+- اشرح بأسلوب واضح ومبسط مناسب لطلاب الثانوية
+- استخدم الأمثلة من القرآن الكريم والشعر والتراث العربي
+- اذكر الإعراب التفصيلي عند الحاجة
+- نبّه على الأخطاء الشائعة في كل موضوع
+- إذا سأل الطالب عن تمرين، حلّه خطوة بخطوة
+- تحدث بالعربية الفصحى مع لمسة ودية
+- إذا كان السؤال خارج اللغة العربية، وجّه الطالب للعودة للمنهج بلطف`;
+
+const SUGGESTIONS = [
+  "ما هو المبتدأ والخبر؟",
+  "اشرح كان وأخواتها مع أمثلة",
+  "ما الفرق بين الحال والتمييز؟",
+  "أعرب: إن الله على كل شيء قدير",
+  "ما هي الأفعال الخمسة وكيف تُعرب؟",
+  "اشرح أسلوب الشرط بالتفصيل",
+  "ما الفرق بين اسم الفاعل واسم المفعول؟",
+  "اشرح لي لا النافية للجنس",
+];
+
+// ═══ STATE ═══
+let history = []; // [{role:'user'|'model', parts:[{text}]}]
+let loading = false;
+
+// ═══ INIT ═══
+window.onload = function() {
+  // Particles
+  const pw = document.getElementById('ptcls');
+  for(let i=0;i<35;i++){
+    const p=document.createElement('div');p.className='ptcl';
+    const sz=Math.random()*3+0.8;
+    p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;bottom:${Math.random()*-30}px;--t:${8+Math.random()*14}s;--d:${Math.random()*14}s;--op:${0.1+Math.random()*0.2};`;
+    pw.appendChild(p);
+  }
+  // Suggestions
+  const sg = document.getElementById('suggestions');
+  SUGGESTIONS.forEach((s,i)=>{
+    const b=document.createElement('button');
+    b.className='chip';b.textContent=s;
+    b.style.animation=`fadeIn 0.5s ${i*0.06}s both`;
+    b.onclick=()=>sendMessage(s);
+    sg.appendChild(b);
+  });
+  // Textarea
+  const inp=document.getElementById('chatInput');
+  inp.addEventListener('input',()=>{
+    inp.style.height='auto';
+    inp.style.height=Math.min(inp.scrollHeight,140)+'px';
+    document.getElementById('sendBtn').disabled=!inp.value.trim();
+  });
+  inp.addEventListener('keydown',e=>{
+    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}
+  });
+};
+
+// ═══ SEND ═══
+async function sendMessage(text){
+  const inp=document.getElementById('chatInput');
+  const q=(text||inp.value).trim();
+  if(!q||loading) return;
+  inp.value='';inp.style.height='auto';
+  document.getElementById('sendBtn').disabled=true;
+  loading=true;
+
+  // Show messages view
+  showMessages();
+  appendMessage('user',q);
+  history.push({role:'user',parts:[{text:q}]});
+
+  // Typing indicator
+  const typingId='typing_'+Date.now();
+  appendTyping(typingId);
+
+  try {
+    const body={
+      system_instruction:{parts:[{text:SYSTEM_PROMPT}]},
+      contents: history,
+      generationConfig:{maxOutputTokens:1200,temperature:0.7}
+    };
+    const res=await fetch(GEMINI_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(!res.ok) throw new Error('API '+res.status);
+    const data=await res.json();
+    const reply=data.candidates?.[0]?.content?.parts?.[0]?.text||'لم أفهم السؤال، حاول مرة أخرى.';
+    removeTyping(typingId);
+    appendMessage('ai',reply);
+    history.push({role:'model',parts:[{text:reply}]});
+  } catch(e) {
+    removeTyping(typingId);
+    appendError('حدث خطأ في الاتصال، يرجى المحاولة مرة أخرى.');
+    history.pop();
+  }
+  loading=false;
+  document.getElementById('sendBtn').disabled=false;
+}
+
+function showMessages(){
+  document.getElementById('emptyState').style.display='none';
+  document.getElementById('messages').style.display='block';
+  document.getElementById('clearBtn').classList.add('show');
+}
+
+function clearChat(){
+  history=[];
+  document.getElementById('messages').innerHTML='';
+  document.getElementById('messages').style.display='none';
+  document.getElementById('emptyState').style.display='flex';
+  document.getElementById('clearBtn').classList.remove('show');
+}
+
+function appendMessage(role,text){
+  const msgs=document.getElementById('messages');
+  const row=document.createElement('div');
+  row.className='msg-row '+(role==='user'?'user':'ai');
+  const isUser=role==='user';
+  row.innerHTML=`
+    ${isUser?`<div class="msg-avatar user-av">🎓</div>`:''}
+    <div class="msg-bubble ${isUser?'user-b':'ai-b'}">${escHtml(text)}</div>
+    ${!isUser?`<div class="msg-avatar ai-av">✦</div>`:''}
+  `;
+  msgs.appendChild(row);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function appendTyping(id){
+  const msgs=document.getElementById('messages');
+  const row=document.createElement('div');
+  row.className='msg-row ai';row.id=id;
+  row.innerHTML=`
+    <div class="msg-bubble ai-b" style="padding:14px 20px;">
+      <div class="typing-dots"><span></span><span></span><span></span></div>
+    </div>
+    <div class="msg-avatar ai-av">✦</div>
+  `;
+  msgs.appendChild(row);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function removeTyping(id){
+  const el=document.getElementById(id);
+  if(el) el.remove();
+}
+
+function appendError(msg){
+  const msgs=document.getElementById('messages');
+  const d=document.createElement('div');
+  d.className='error-msg';d.textContent=msg;
+  msgs.appendChild(d);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function escHtml(t){
+  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+</script>
+</body>
+</html>
