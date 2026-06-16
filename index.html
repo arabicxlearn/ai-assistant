@@ -187,10 +187,10 @@ body{
 /* ══════════════════════════════════════
    ⬇️  ضع الـ API Key بتاعك هنا
    ══════════════════════════════════════ */
-const GEMINI_API_KEY = atob("AQ.Ab8RN6IKnkDVMhIeGTx5NgS_jWc8jn8I2Iang2xx0590rnQ5FQ");
+const OR_API_KEY = "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";
 /* ══════════════════════════════════════ */
 
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
+const OR_URL = "https://openrouter.ai/api/v1/chat/completions";
 
 const SYSTEM_PROMPT = `أنت مساعد ذكاء اصطناعي متخصص في تدريس اللغة العربية — النحو والصرف والبلاغة — لطلاب الصف الثالث الثانوي في مصر.
 أنت تعمل على منصة "الظلال في اللغة العربية" بإشراف مستر محمد عبد المنعم.
@@ -273,36 +273,49 @@ async function sendMessage(text){
   // Show messages view
   showMessages();
   appendMessage('user',q);
-  history.push({role:'user',parts:[{text:q}]});
+  history.push({role:'user', content: q});
 
   // Typing indicator
   const typingId='typing_'+Date.now();
   appendTyping(typingId);
 
   try {
-    // نحط الـ system prompt كأول رسالة في المحادثة
-    const contents = [
-      {role:'user', parts:[{text:'أنت مساعد متخصص في اللغة العربية. هل فهمت دورك؟\n\n'+SYSTEM_PROMPT}]},
-      {role:'model', parts:[{text:'نعم، فهمت دوري تماماً. أنا مساعدك الذكي في النحو والصرف والبلاغة لمنصة الظلال. تفضل اسأل!'}]},
-      ...history
+    // OpenRouter API - OpenAI compatible
+    const messages = [
+      {role:'system', content: SYSTEM_PROMPT},
+      ...history.map(m => ({
+        role: m.role === 'model' ? 'assistant' : 'user',
+        content: m.content
+      }))
     ];
-    const body={
-      contents: contents,
-      generationConfig:{maxOutputTokens:1200,temperature:0.7}
+    const body = {
+      model: 'google/gemini-2.0-flash-exp:free',
+      messages: messages,
+      max_tokens: 1200,
+      temperature: 0.7
     };
-    const res=await fetch(GEMINI_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const res = await fetch(OR_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + OR_API_KEY,
+        'HTTP-Referer': 'https://arabicxlearn.github.io/ai-assistant/',
+        'X-Title': 'Arabic AI Assistant'
+      },
+      body: JSON.stringify(body)
+    });
     if(!res.ok){
-      const errText=await res.text();
-      console.error('Gemini error:',res.status,errText);
-      throw new Error('API '+res.status);
+      const errText = await res.text();
+      console.error('OpenRouter error:', res.status, errText);
+      throw new Error('API ' + res.status);
     }
-    const data=await res.json();
-    const reply=data.candidates?.[0]?.content?.parts?.[0]?.text||'لم أفهم السؤال، حاول مرة أخرى.';
+    const data = await res.json();
+    const reply = data.choices?.[0]?.message?.content || 'لم أفهم السؤال، حاول مرة أخرى.';
     removeTyping(typingId);
-    appendMessage('ai',reply);
-    history.push({role:'model',parts:[{text:reply}]});
+    appendMessage('ai', reply);
+    history.push({role:'assistant', content: reply});
   } catch(e) {
-    console.error('Error:',e);
+    console.error('Error:', e);
     removeTyping(typingId);
     appendError('حدث خطأ في الاتصال — تأكد من الـ API Key وحاول مرة أخرى.');
     history.pop();
