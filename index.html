@@ -280,21 +280,31 @@ async function sendMessage(text){
   appendTyping(typingId);
 
   try {
+    // نحط الـ system prompt كأول رسالة في المحادثة
+    const contents = [
+      {role:'user', parts:[{text:'أنت مساعد متخصص في اللغة العربية. هل فهمت دورك؟\n\n'+SYSTEM_PROMPT}]},
+      {role:'model', parts:[{text:'نعم، فهمت دوري تماماً. أنا مساعدك الذكي في النحو والصرف والبلاغة لمنصة الظلال. تفضل اسأل!'}]},
+      ...history
+    ];
     const body={
-      system_instruction:{parts:[{text:SYSTEM_PROMPT}]},
-      contents: history,
+      contents: contents,
       generationConfig:{maxOutputTokens:1200,temperature:0.7}
     };
     const res=await fetch(GEMINI_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-    if(!res.ok) throw new Error('API '+res.status);
+    if(!res.ok){
+      const errText=await res.text();
+      console.error('Gemini error:',res.status,errText);
+      throw new Error('API '+res.status);
+    }
     const data=await res.json();
     const reply=data.candidates?.[0]?.content?.parts?.[0]?.text||'لم أفهم السؤال، حاول مرة أخرى.';
     removeTyping(typingId);
     appendMessage('ai',reply);
     history.push({role:'model',parts:[{text:reply}]});
   } catch(e) {
+    console.error('Error:',e);
     removeTyping(typingId);
-    appendError('حدث خطأ في الاتصال، يرجى المحاولة مرة أخرى.');
+    appendError('حدث خطأ في الاتصال — تأكد من الـ API Key وحاول مرة أخرى.');
     history.pop();
   }
   loading=false;
